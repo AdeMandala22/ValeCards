@@ -12,11 +12,14 @@
             height: 100vh;
             background-color: #efd7ff;
             margin: 0;
+            padding: 10px;
+            flex-direction: column;
         }
         .book {
-            width: 90%;
+            width: 100%;
             max-width: 400px;
-            height: 500px;
+            height: 90vh;
+            max-height: 500px;
             position: relative;
             perspective: 1500px;
         }
@@ -29,6 +32,7 @@
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
             transform-origin: left center;
             transition: transform 1s ease-in-out, filter 0.5s ease-in-out;
+            z-index: var(--page-index);
         }
         .cover {
             background: brown;
@@ -37,21 +41,20 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 10;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
         }
         .cover img {
             width: 80%;
             height: auto;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border-radius: 10px;
         }
         .content {
-            padding: 25px;
+            padding: 20px;
             font-size: 18px;
             display: flex;
             flex-direction: column;
@@ -60,7 +63,7 @@
             cursor: pointer;
         }
         .content img {
-            width: 50%;
+            width: 90%;
             height: auto;
             margin-top: 10px;
             border-radius: 10px;
@@ -71,22 +74,22 @@
         .blurred {
             filter: brightness(0.5);
         }
-        .page {
-            z-index: var(--page-index);
-        }
 
+        /* Responsif */
         @media (max-width: 500px) {
             .book {
-                height: 400px;
+                height: 80vh;
             }
             .content {
                 font-size: 16px;
+                padding: 10px;
+            }
+            .cover {
+                font-size: 18px;
             }
         }
     </style>
 </head>
-<iframe id="musicFrame" width="1" height="1" src="https://www.youtube.com/embed/98zHKN-xSHk?si=gfTOpnqo3agTmQnv=1" frameborder="0" allow="autoplay"></iframe>
-    
 <body>
     <div class="book">
         <div class="page cover" style="--page-index: 7" onclick="flipPage(this)"> 
@@ -95,48 +98,30 @@
             <p>❤️</p>
         </div>
         <div class="page content" style="--page-index: 6" onclick="flipPage(this)">
-            <div class="text">You are the reason I smile every day. Happy Valentine's Day, my love!!</div>
+            <p>You are the reason I smile every day. Happy Valentine's Day, my love!!</p>
             <img src="h1.png" alt="Gambar Halaman 1">
-            &nbsp;
-            <div class="text">You are the reason I smile every day. Happy Valentine's Day, my love!!</div>
-            <img src="h3.png" alt="Gambar Halaman 1">
         </div>
         <div class="page content" style="--page-index: 5" onclick="flipPage(this)">
-            <div class="text">Be the success story you are looking for. Be the one to survive your long distance relationship. Be the inspiration for others to follow</div>
+            <p>Be the success story you are looking for...</p>
             <img src="h2.png" alt="Gambar Halaman 2">
-            &nbsp;
-            <div class="text">Be the success story you are looking for. Be the one to survive your long distance relationship. Be the inspiration for others to follow</div>
-            <img src="h4.png" alt="Gambar Halaman 2">
         </div>
         <div class="page content" style="--page-index: 4" onclick="flipPage(this)">
-            <p>
-            <div class="text">Thank you for being my source of happiness</div>
+            <p>Thank you for being my source of happiness</p>
             <img src="h3.png" alt="Gambar Halaman 3">
-            <p>
-            <div class="text">Thank you for being my source of happiness</div>
-            <img src="h1.png" alt="Gambar Halaman 3">
         </div>
         <div class="page content" style="--page-index: 3" onclick="flipPage(this)">
-        <p>
-            <div class="text">With you, every day feels like Valentine's Day. I love you</div>
+            <p>With you, every day feels like Valentine's Day. I love you</p>
             <img src="h4.png" alt="Gambar Halaman 4">
-            &nbsp;
-            <div class="text">With you, every day feels like Valentine's Day. I love you</div>
-            <img src="h5.png" alt="Gambar Halaman 4">
         </div>
         <div class="page content" style="--page-index: 2" onclick="flipPage(this)">
-            <p>
-            <div class="text">You still make me laugh like crazy. That's true love</div>
+            <p>You still make me laugh like crazy. That's true love</p>
             <img src="h5.png" alt="Gambar Halaman 5">
-            &nbsp;
-            <div class="text">You still make me laugh like crazy. That's true love</div>
-            <img src="h2.png" alt="Gambar Halaman 5">
         </div>
         <div class="page cover" style="--page-index: 1" onclick="flipPage(this)"> 
-            <p></p>
+            <p>End</p>
         </div>
     </div>
-    
+
     <script>
         function flipPage(page) {
             let isFlipped = page.classList.contains('flipped');
@@ -156,11 +141,6 @@
                     pages[index - 1].classList.remove('blurred');
                 }
             }
-        }
-        function toggleMusic(event) {
-            event.stopPropagation();
-            let iframe = document.getElementById('musicFrame');
-            iframe.src = iframe.src.includes("autoplay=1") ? "https://www.youtube.com/embed/98zHKN-xSHk?si=gfTOpnqo3agTmQnv?enablejsapi=1" : "https://www.youtube.com/embed/98zHKN-xSHk?si=gfTOpnqo3agTmQnv?autoplay=1";
         }
     </script>
 </body>
