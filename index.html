@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Digital</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #efd7ff;
+            margin: 0;
+        }
+        .book {
+            width: 90%;
+            max-width: 400px;
+            height: 500px;
+            position: relative;
+            perspective: 1500px;
+        }
+        .page {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: rgb(198, 198, 198);
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            transform-origin: left center;
+            transition: transform 1s ease-in-out, filter 0.5s ease-in-out;
+        }
+        .cover {
+            background: brown;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            text-align: center;
+            padding: 20px;
+        }
+        .cover img {
+            width: 80%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+        .content {
+            padding: 25px;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+        .content img {
+            width: 50%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        .flipped {
+            transform: rotateY(-180deg);
+        }
+        .blurred {
+            filter: brightness(0.5);
+        }
+        .page {
+            z-index: var(--page-index);
+        }
+
+        @media (max-width: 500px) {
+            .book {
+                height: 400px;
+            }
+            .content {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<iframe id="musicFrame" width="1" height="1" src="https://www.youtube.com/embed/98zHKN-xSHk?si=gfTOpnqo3agTmQnv=1" frameborder="0" allow="autoplay"></iframe>
+    
+<body>
+    <div class="book">
+        <div class="page cover" style="--page-index: 7" onclick="flipPage(this)"> 
+            <img src="cvr.png" alt="Cover Buku">
+            <p>Alles Gute zum Valentinstag</p>
+            <p>❤️</p>
+        </div>
+        <div class="page content" style="--page-index: 6" onclick="flipPage(this)">
+            <div class="text">You are the reason I smile every day. Happy Valentine's Day, my love!!</div>
+            <img src="h1.png" alt="Gambar Halaman 1">
+            &nbsp;
+            <div class="text">You are the reason I smile every day. Happy Valentine's Day, my love!!</div>
+            <img src="h3.png" alt="Gambar Halaman 1">
+        </div>
+        <div class="page content" style="--page-index: 5" onclick="flipPage(this)">
+            <div class="text">Be the success story you are looking for. Be the one to survive your long distance relationship. Be the inspiration for others to follow</div>
+            <img src="h2.png" alt="Gambar Halaman 2">
+            &nbsp;
+            <div class="text">Be the success story you are looking for. Be the one to survive your long distance relationship. Be the inspiration for others to follow</div>
+            <img src="h4.png" alt="Gambar Halaman 2">
+        </div>
+        <div class="page content" style="--page-index: 4" onclick="flipPage(this)">
+            <p>
+            <div class="text">Thank you for being my source of happiness</div>
+            <img src="h3.png" alt="Gambar Halaman 3">
+            <p>
+            <div class="text">Thank you for being my source of happiness</div>
+            <img src="h1.png" alt="Gambar Halaman 3">
+        </div>
+        <div class="page content" style="--page-index: 3" onclick="flipPage(this)">
+        <p>
+            <div class="text">With you, every day feels like Valentine's Day. I love you</div>
+            <img src="h4.png" alt="Gambar Halaman 4">
+            &nbsp;
+            <div class="text">With you, every day feels like Valentine's Day. I love you</div>
+            <img src="h5.png" alt="Gambar Halaman 4">
+        </div>
+        <div class="page content" style="--page-index: 2" onclick="flipPage(this)">
+            <p>
+            <div class="text">You still make me laugh like crazy. That's true love</div>
+            <img src="h5.png" alt="Gambar Halaman 5">
+            &nbsp;
+            <div class="text">You still make me laugh like crazy. That's true love</div>
+            <img src="h2.png" alt="Gambar Halaman 5">
+        </div>
+        <div class="page cover" style="--page-index: 1" onclick="flipPage(this)"> 
+            <p></p>
+        </div>
+    </div>
+    
+    <script>
+        function flipPage(page) {
+            let isFlipped = page.classList.contains('flipped');
+            let pages = document.querySelectorAll('.page');
+            let index = Array.from(pages).indexOf(page);
+            
+            if (!isFlipped) {
+                page.style.zIndex = index;
+                page.classList.add('flipped');
+                if (index > 0) {
+                    pages[index - 1].classList.add('blurred');
+                }
+            } else {
+                page.style.zIndex = 10 - index;
+                page.classList.remove('flipped');
+                if (index > 0) {
+                    pages[index - 1].classList.remove('blurred');
+                }
+            }
+        }
+        function toggleMusic(event) {
+            event.stopPropagation();
+            let iframe = document.getElementById('musicFrame');
+            iframe.src = iframe.src.includes("autoplay=1") ? "https://www.youtube.com/embed/98zHKN-xSHk?si=gfTOpnqo3agTmQnv?enablejsapi=1" : "https://www.youtube.com/embed/98zHKN-xSHk?si=gfTOpnqo3agTmQnv?autoplay=1";
+        }
+    </script>
+</body>
+</html>
